@@ -32,7 +32,14 @@ module.exports = {
       'import/prefer-default-export': 'off',
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/explicit-member-accessibility': 'off',
-      '@typescript-eslint/interface-name-prefix': always 
+      '@typescript-eslint/interface-name-prefix': 0,
+      'react/destructuring-assignment': 0,
+      '@typescript-eslint/no-non-null-assertion': 0,
+      '@typescript-eslint/no-explicit-any': 0,
+      '@typescript-eslint/no-empty-interface': 0,
+      'no-underscore-dangle': 0,
+      'react/no-access-state-in-setstate': 0,
+      'spaced-comment': 0
     },
     settings: {
       'import/parsers': {

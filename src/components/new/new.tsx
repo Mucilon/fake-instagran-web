@@ -1,13 +1,12 @@
 
 import React, { Component } from 'react';
-import {IProps,IState} from './interface';
-import api from '../../services/api';
 import { withRouter } from 'react-router-dom';
-
+import { IProps, IState } from './interface';
+import api from '../../services/api';
 
 import './new.css';
 
-class New extends Component<IProps,IState> {
+class New extends Component<IProps, IState> {
     state:IState = {
         image: {} as any,
         author: '',
@@ -17,10 +16,11 @@ class New extends Component<IProps,IState> {
 
     };
 
+    componentDidMount() {}
+
     handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        
-        console.log(this.state)
+
         const data = new FormData();
 
         data.append('image', this.state.image);
@@ -32,11 +32,10 @@ class New extends Component<IProps,IState> {
         await api.post('/api/post/create', data);
 
         this.props.history.push('/');
- 
     }
 
     handleImageChange = (e:React.ChangeEvent<HTMLInputElement>) => {
-        this.setState( { image: e.target.files![0] } );
+        this.setState({ image: e.target.files![0] });
     }
 
     handleChange = (e:React.ChangeEvent<HTMLInputElement>): void => {
@@ -45,25 +44,22 @@ class New extends Component<IProps,IState> {
         if (Object.keys(this.state).includes(key)) {
             this.setState({ [key]: e.target.value } as unknown as Pick<IState, keyof IState>);
           }
-
     }
-
-    componentDidMount() {}
 
     render() {
         return (
-           <form id="new-post" onSubmit={this.handleSubmit}>
-               <input type="file" onChange={this.handleImageChange}/>
-               <input type="text" name="author" placeholder="Autor do post" onChange={this.handleChange} value={this.state.author}/>
-               <input type="text" name="place" placeholder="local do post" onChange={this.handleChange} value={this.state.place}/>
-               <input type="text" name="description" placeholder="descrição do post" onChange={this.handleChange} value={this.state.description}/>
-               <input type="text" name="hashtags" placeholder="hashtag" onChange={this.handleChange} value={this.state.hashtags}/>
-               <button type="submit">Enviar</button>
-           </form> 
+          <form id="new-post" onSubmit={this.handleSubmit}>
+            <input type="file" onChange={this.handleImageChange} />
+            <input type="text" name="author" placeholder="Autor do post" onChange={this.handleChange} value={this.state.author} />
+            <input type="text" name="place" placeholder="local do post" onChange={this.handleChange} value={this.state.place} />
+            <input type="text" name="description" placeholder="descrição do post" onChange={this.handleChange} value={this.state.description} />
+            <input type="text" name="hashtags" placeholder="hashtag" onChange={this.handleChange} value={this.state.hashtags} />
+            <button type="submit">Enviar</button>
+          </form>
         );
     }
 }
 
 export default withRouter(New);
 
-//export default New;
+// export default New;

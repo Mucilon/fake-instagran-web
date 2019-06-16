@@ -1,4 +1,4 @@
-import {  RouteComponentProps } from "react-router-dom";
+import { RouteComponentProps } from 'react-router-dom';
 
 export interface IPost{
 
@@ -8,7 +8,7 @@ export interface IPost{
     hashtags: string,
     image: File,
 
-  
+
   }
 
   export interface IState extends IPost {
@@ -16,7 +16,5 @@ export interface IPost{
   }
 
   export interface IProps extends RouteComponentProps<any>{
-    
-  }
 
-  
+  }
