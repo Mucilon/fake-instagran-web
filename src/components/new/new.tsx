@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { IProps, IState } from './interface';
 import api from '../../services/api';
+import { NewPost } from './styles';
 
-import './new.css';
 
 class New extends Component<IProps, IState> {
     state:IState = {
@@ -48,14 +48,14 @@ class New extends Component<IProps, IState> {
 
     render() {
         return (
-          <form id="new-post" onSubmit={this.handleSubmit}>
+          <NewPost id="new-post" onSubmit={this.handleSubmit}>
             <input type="file" onChange={this.handleImageChange} />
             <input type="text" name="author" placeholder="Autor do post" onChange={this.handleChange} value={this.state.author} />
             <input type="text" name="place" placeholder="local do post" onChange={this.handleChange} value={this.state.place} />
             <input type="text" name="description" placeholder="descrição do post" onChange={this.handleChange} value={this.state.description} />
             <input type="text" name="hashtags" placeholder="hashtag" onChange={this.handleChange} value={this.state.hashtags} />
             <button type="submit">Enviar</button>
-          </form>
+          </NewPost>
         );
     }
 }

@@ -3,7 +3,10 @@ import io from 'socket.io-client';
 import api from '../../services/api';
 import { IProps, IState, IPost } from './interface';
 
-import './feed.css';
+import {
+ Section, Article, ArticleHeader, UserInfo, Author, Place,
+ Image, Footer, Actions, ActionsButton, Description, Hashtags,
+} from './styles';
 
 import more from '../../assets/more.svg';
 import like from '../../assets/like.svg';
@@ -46,38 +49,42 @@ class Feed extends Component<IProps, IState> {
         return (
 
 
-          <section id="post-list">
+          <Section id="post-list">
 
             { this.state.feed.map(post => (
 
-              <article key={post._id}>
-                <header>
-                  <div className="user-info">
-                    <span>{post.author}</span>
-                    <span className="place">{post.place}</span>
-                  </div>
+              <Article key={post._id}>
+                <ArticleHeader>
+                  <UserInfo className="user-info">
+                    <Author>{post.author}</Author>
+                    <Place className="place">{post.place}</Place>
+                  </UserInfo>
                   <img src={more} alt="mais" />
 
-                </header>
+                </ArticleHeader>
 
-                <img src={`http://localhost:3333/files/${post.image}`} alt="" />
-                <footer>
-                  <div className="actions">
-                    <button type="button" onClick={() => this.handleLike(post._id)}>
+                <Image src={`http://localhost:3333/files/${post.image}`} alt="" />
+                <Footer>
+                  <Actions className="actions">
+                    <ActionsButton type="button" onClick={() => this.handleLike(post._id)}>
                       <img src={like} alt="" />
-                    </button>
-                    <img src={comment} alt="" />
-                    <img src={send} alt="" />
-                  </div>
+                    </ActionsButton>
+                    <ActionsButton type="button" onClick={() => {}}>
+                      <img src={comment} alt="" />
+                    </ActionsButton>
+                    <ActionsButton type="button" onClick={() => {}}>
+                      <img src={send} alt="" />
+                    </ActionsButton>
+                  </Actions>
                   <strong>{`${post.likes} curtidas`}</strong>
-                  <p>
+                  <Description>
                     {post.description}
-                    <span>{post.hashtags}</span>
-                  </p>
-                </footer>
-              </article>
+                    <Hashtags>{post.hashtags}</Hashtags>
+                  </Description>
+                </Footer>
+              </Article>
             ))}
-          </section>
+          </Section>
         );
     }
 }
